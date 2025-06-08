@@ -1,0 +1,266 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #6a0dad;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar .logo {
+  width: 100px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.sidebar h2 {
+  text-align: center;
+}
+
+.sidebar nav button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  background-color: white;
+  color: #6a0dad;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  background: linear-gradient(to bottom right, #ffe4e1, #e6e6fa);
+  overflow-y: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+textarea {
+  height: 200px;
+}
+
+/* ✅ Topic Cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.topic-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.topic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.topic-card.checked {
+  background-color: #c6f6d5;
+  border: 2px solid #38a169;
+}
+
+.topic-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.1em;
+}
+
+.topic-card .bottom {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topic-card button {
+  padding: 6px 10px;
+  font-size: 0.9em;
+  background: #90cdf4;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.topic-card input[type="checkbox"] {
+  transform: scale(1.2);
+}
+
+/* ✅ Progress Bar */
+.progress-bar-container {
+  background: #ddd;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: #38a169;
+  text-align: center;
+  color: white;
+  font-size: 0.9em;
+  font-weight: bold;
+  line-height: 20px;
+  transition: width 0.5s;
+}
+.summary-box {
+  background: #fff;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.badge-label {
+  text-align: center;
+  margin: 8px 0;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.welcome-banner {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #333;
+}
+
+/* ✅ Chat */
+.chat-box {
+  height: 250px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+/* ✅ XO Game */
+.xo-board {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  grid-gap: 5px;
+  margin: 20px 0;
+}
+
+.xo-board div {
+  width: 80px;
+  height: 80px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* ✅ Calculator */
+.calculator {
+  margin-top: 20px;
+}
+
+#calc-display {
+  background: #222;
+  color: #0f0;
+  font-size: 1.5em;
+  padding: 10px;
+  text-align: right;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.calc-buttons button {
+  padding: 15px;
+  font-size: 1.1em;
+  background: #6a0dad;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.calc-buttons .clear-btn {
+  grid-column: span 4;
+  background: crimson;
+}
+
+/* ✅ Responsive */
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+  }
+
+  .sidebar nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .sidebar .logo {
+    display: none;
+  }
+
+  .main {
+    padding: 10px;
+  }
+
+  .xo-board {
+    grid-template-columns: repeat(3, 60px);
+  }
+
+  .xo-board div {
+    width: 60px;
+    height: 60px;
+  }
+
+  textarea {
+    height: 150px;
+  }
+}

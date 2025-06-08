@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aptitude-To-Do</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/jpeg" href="logo.jpeg" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <img src="logo.jpeg" alt="Logo" class="logo" />
+      <h2 id="sidebar-title">Aptitudetodo</h2>
+      <p id="user-badge" class="badge-label"></p>
+
+      <nav>
+        <button onclick="showSection('checklist')">Checklist</button>
+        <button onclick="showSection('progress')">Progress</button>
+        <button onclick="showSection('notes')">Notes + Calculator</button>
+        <button onclick="showSection('chat')">Chat</button>
+        <button onclick="showSection('leaderboard')">Leaderboard</button>
+        <button onclick="showSection('xo')">Play XO</button>
+        <a href="https://www.indiabix.com/aptitude/questions-and-answers/" target="_blank">
+          <button>Take Test</button>
+        </a>
+        <button onclick="logout()">Logout</button>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <!-- Login -->
+      <section id="login" class="section">
+        <h1>Welcome</h1>
+        <input type="text" id="username" placeholder="Enter your name" />
+        <button onclick="startApp()">Start</button>
+      </section>
+
+      <!-- Checklist Panel -->
+      <section id="checklist" class="section hidden">
+  <div id="welcome-message" class="welcome-banner"></div>
+  <div id="home-progress-bar"></div>
+
+        <h2>Checklist</h2>
+        <div id="checklist-container" class="card-grid"></div>
+      </section>
+
+      <!-- Progress Panel -->
+      <section id="progress" class="section hidden">
+  <h2>Progress</h2>
+  <div id="progress-info"></div>
+  <div id="progress-summary" class="summary-box"></div>
+  <div id="daily-streak" class="summary-box"></div>
+  <div id="other-streaks" class="summary-box"></div>
+</section>
+
+
+
+      <!-- Notes + Calculator Panel -->
+      <section id="notes" class="section hidden">
+        <h2>My Notes</h2>
+        <textarea id="notes-area" placeholder="Write your notes here..."></textarea>
+        <div class="calculator">
+          <h3>Calculator</h3>
+          <div id="calc-display">0</div>
+          <div class="calc-buttons">
+            <button onclick="press('7')">7</button>
+            <button onclick="press('8')">8</button>
+            <button onclick="press('9')">9</button>
+            <button onclick="press('/')">/</button>
+            <button onclick="press('4')">4</button>
+            <button onclick="press('5')">5</button>
+            <button onclick="press('6')">6</button>
+            <button onclick="press('*')">*</button>
+            <button onclick="press('1')">1</button>
+            <button onclick="press('2')">2</button>
+            <button onclick="press('3')">3</button>
+            <button onclick="press('-')">-</button>
+            <button onclick="press('0')">0</button>
+            <button onclick="press('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="press('+')">+</button>
+            <button onclick="clearCalc()" class="clear-btn">C</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chat -->
+     <section id="chat" class="section hidden">
+  <h2>Global Chat</h2>
+  <div id="chat-box" class="chat-box"></div>
+  <input
+    type="text"
+    id="chat-input"
+    placeholder="Type a message..."
+    onkeydown="if(event.key==='Enter') sendMessage()"
+  />
+</section>
+
+      <!-- Leaderboard -->
+      <section id="leaderboard" class="section hidden">
+        <h2>Leaderboard</h2>
+        <ul id="leaderboard-list"></ul>
+      </section>
+
+      <!-- XO Game -->
+      <section id="xo" class="section hidden">
+        <h2>Play XO (vs Computer)</h2>
+        <div id="xo-board" class="xo-board"></div>
+        <p id="xo-status"></p>
+        <button onclick="resetXO()">Reset Game</button>
+      </section>
+    </main>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
