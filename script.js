@@ -274,24 +274,33 @@ function listenForChat() {
 // Leaderboard
 async function updateLeaderboard() {
   if (!username) return;
+
+  // update current user's record
   await db.collection("leaderboard").doc(username).set({
     name: username,
     progress: completion,
+    streak: parseInt(localStorage.getItem("dailyStreak") || "0"),
     updated: Date.now()
-  });
+  }, { merge: true });
+
+  // get and sort leaderboard
   const snap = await db.collection("leaderboard").get();
-  const list = document.getElementById("leaderboard-list");
-  if (!list) return;
   let data = [];
   snap.forEach(doc => data.push(doc.data()));
-  list.innerHTML = data
-    .sort((a, b) => b.progress - a.progress)
-    .map(u => `<li>${u.name} - ${u.progress}%</li>`)
-    .join("");
+
+  data.sort((a, b) => b.progress - a.progress);
+
+  // render
+  const list = document.getElementById("leaderboard-list");
+  list.innerHTML = data.map((u, i) => `
+    <div class="leaderboard-row">
+      <span>${i + 1}</span>
+      <span>${u.name}</span>
+      <span>${u.progress || 0}%</span>
+      <span>${u.streak || 0} 🔥</span>
+    </div>
+  `).join("");
 }
-let badgeIcon = "🥉 Beginner";
-if (done >= 26) badgeIcon = "🥇 Master";
-else if (done >= 11) badgeIcon = "🥈 Intermediate";
 
 // Update badge in sidebar
 const badgeEl = document.getElementById("user-badge");

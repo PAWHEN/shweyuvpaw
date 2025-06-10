@@ -141,6 +141,41 @@ textarea {
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+.leaderboard-table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.leaderboard-header,
+.leaderboard-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 100px 100px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.leaderboard-header {
+  background: #6a0dad;
+  color: white;
+  font-weight: bold;
+}
+
+.leaderboard-row:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.leaderboard-row:nth-child(odd) {
+  background: #fdfdfd;
+}
+
+.leaderboard-row span {
+  display: block;
+}
 
 .badge-label {
   text-align: center;
