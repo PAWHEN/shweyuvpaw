@@ -35,11 +35,16 @@ let username = "", completion = 0, xoState = [];
 // Login & start
 function startApp() {
   const input = document.getElementById("username");
-  username = input.value.trim();
+  const rawName = input.value.trim();
+username = rawName.toLowerCase(); // for internal use
+localStorage.setItem("shweyupaw-user", username); // normalized for login
+localStorage.setItem("displayName", rawName);     // optional: for showing nicely
+
   if (!username) return alert("Enter your name");
 
   document.getElementById("login").classList.add("hidden");
-  document.getElementById("sidebar-title").innerText = `${username}'s Todo`;
+ document.getElementById("sidebar-title").innerText = `${rawName}'s Todo`;
+
   localStorage.setItem("shweyupaw-user", username);
 
   showSection('checklist');
@@ -358,8 +363,10 @@ window.onload = () => {
   const saved = localStorage.getItem("shweyupaw-user");
   if (saved) {
     username = saved;
+    const displayName = localStorage.getItem("displayName") || username; // 👈 ADD THIS
     document.getElementById("login").classList.add("hidden");
-    document.getElementById("sidebar-title").innerText = `${username}'s Todo`;
+    document.getElementById("sidebar-title").innerText = `${displayName}'s Todo`; // 👈 USE THIS
+
     showSection("checklist");
     loadChecklist();
     loadProgress();
@@ -371,6 +378,7 @@ window.onload = () => {
     populateChatUsers();
   }
 };
+
 
 // Global access
 window.startApp = startApp;
